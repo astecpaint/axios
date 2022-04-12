@@ -1,12 +1,12 @@
 var isCancel = require('../../../lib/cancel/isCancel');
-var CanceledError = require('../../../lib/cancel/CanceledError');
+var Cancel = require('../../../lib/cancel/Cancel');
 
 describe('isCancel', function() {
-  it('returns true if value is a CanceledError', function() {
-    expect(isCancel(new CanceledError())).toBe(true);
+  it('returns true if value is a Cancel', function() {
+    expect(isCancel(new Cancel())).toBe(true);
   });
 
-  it('returns false if value is not a CanceledError', function() {
+  it('returns false if value is not a Cancel', function() {
     expect(isCancel({ foo: 'bar' })).toBe(false);
   });
 });

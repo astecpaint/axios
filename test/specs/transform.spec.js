@@ -1,5 +1,3 @@
-var AxiosError = require("../../lib/core/AxiosError");
-
 describe('transform', function () {
   beforeEach(function () {
     jasmine.Ajax.install();
@@ -66,7 +64,6 @@ describe('transform', function () {
         setTimeout(function () {
           expect(thrown).toBeTruthy();
           expect(thrown.name).toContain('SyntaxError');
-          expect(thrown.code).toEqual(AxiosError.ERR_BAD_RESPONSE);
           done();
         }, 100);
       });

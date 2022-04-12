@@ -13,10 +13,8 @@ describe('instance', function () {
     for (var prop in axios) {
       if ([
         'Axios',
-        'AxiosError',
         'create',
         'Cancel',
-        'CanceledError',
         'CancelToken',
         'isCancel',
         'all',
@@ -24,9 +22,7 @@ describe('instance', function () {
         'getUri',
         'isAxiosError',
         'VERSION',
-        'default',
-        'toFormData'
-      ].indexOf(prop) > -1) {
+        'default'].indexOf(prop) > -1) {
         continue;
       }
       expect(typeof instance[prop]).toBe(typeof axios[prop]);

@@ -107,9 +107,6 @@ export interface AxiosRequestConfig<D = any> {
   transitional?: TransitionalOptions;
   signal?: AbortSignal;
   insecureHTTPParser?: boolean;
-  env?: {
-    FormData?: new (...args: any[]) => object;
-  };
 }
 
 export interface HeadersDefaults {
@@ -139,35 +136,13 @@ export interface AxiosResponse<T = any, D = any>  {
   request?: any;
 }
 
-export class AxiosError<T = unknown, D = any> extends Error {
-  constructor(
-    message?: string,
-    code?: string,
-    config?: AxiosRequestConfig<D>,
-    request?: any,
-    response?: AxiosResponse<T, D>
-  );
-
+export interface AxiosError<T = any, D = any> extends Error {
   config: AxiosRequestConfig<D>;
   code?: string;
   request?: any;
   response?: AxiosResponse<T, D>;
   isAxiosError: boolean;
-  status?: string;
   toJSON: () => object;
-  static readonly ERR_FR_TOO_MANY_REDIRECTS = "ERR_FR_TOO_MANY_REDIRECTS";
-  static readonly ERR_BAD_OPTION_VALUE = "ERR_BAD_OPTION_VALUE";
-  static readonly ERR_BAD_OPTION = "ERR_BAD_OPTION";
-  static readonly ERR_NETWORK = "ERR_NETWORK";
-  static readonly ERR_DEPRECATED = "ERR_DEPRECATED";
-  static readonly ERR_BAD_RESPONSE = "ERR_BAD_RESPONSE";
-  static readonly ERR_BAD_REQUEST = "ERR_BAD_REQUEST";
-  static readonly ERR_CANCELED = "ERR_CANCELED";
-  static readonly ECONNABORTED = "ECONNABORTED";
-  static readonly ETIMEDOUT = "ETIMEDOUT";
-}
-
-export class CanceledError<T> extends AxiosError<T> {
 }
 
 export interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
@@ -227,9 +202,6 @@ export class Axios {
   post<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
   put<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
   patch<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
-  postForm<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
-  putForm<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
-  patchForm<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
 }
 
 export interface AxiosInstance extends Axios {
